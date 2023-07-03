@@ -37,7 +37,7 @@ public class ClientTest {
 
         Map<String, Object> body = new HashMap<>();
 
-        Map<String, Object> res = client.request("/libra/openapi/v1/open/flight-list", "GET", headers, params, body);
+        Map<String, Object> res = client.request("/xxx/openapi/v1/open/flight-list", "GET", headers, params, body);
 
         // Output results
         System.out.println("Output requestGetTest: " + res);
@@ -58,7 +58,7 @@ public class ClientTest {
         body.put("uid_list", new String[] { "1111111110000" });
 
         Map<String, Object> res = client.request(
-                "/libra/openapi/v1/open/flight/version/6290880/add-test-user",
+                "/xxx/openapi/v1/open/flight/version/6290880/add-test-user",
                 "POST",
                 headers,
                 params,

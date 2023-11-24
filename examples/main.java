@@ -29,7 +29,7 @@ public class ClientTest {
 
         Map<String, Object> body = new HashMap<>();
 
-        Map<String, Object> res = client.request("/xxx/openapi/v1/open/flight-list", "GET", headers, params, body);
+        Map<String, Object> res = client.request("/dataopen/open-apis/xxx/openapi/v1/open/flight-list", "GET", headers, params, body);
 
         // Output results
         System.out.println("Output requestGetTest: " + res);
@@ -49,7 +49,7 @@ public class ClientTest {
         body.put("uid_list", new String[] { "1111111110000" });
 
         Map<String, Object> res = client.request(
-                "/xxx/openapi/v1/open/flight/version/6290880/add-test-user",
+                "/dataopen/open-apis/xxx/openapi/v1/open/flight/version/6290880/add-test-user",
                 "POST",
                 headers,
                 params,
@@ -63,8 +63,7 @@ public class ClientTest {
         String app_id = "";
         String app_secret = "";
 
-        Client client = new Client(app_id, app_secret, "https://analytics.volcengineapi.com",
-                "dataopen_staging", null);
+        Client client = new Client(app_id, app_secret, "https://analytics.volcengineapi.com", null);
 
         Map<String, String> headers = new HashMap<>();
 
@@ -78,7 +77,7 @@ public class ClientTest {
         body.put("frameworkType", "react");
 
         Map<String, Object> res = client.request(
-                "/material/openapi/v1/material",
+                "/dataopen/open-apis/material/openapi/v1/material",
                 "PUT",
                 headers,
                 params,

@@ -30,24 +30,21 @@ public class Client {
     public String app_id;
     public String app_secret;
     public String url;
-    public String env;
     public String expiration;
     private String _access_token;
     private int _ttl;
     private long _token_time;
 
-    public static final String OPEN_APIS_PATH = "/open-apis";
+    public static final String OPEN_APIS_PATH = "/dataopen/open-apis";
 
     public Client(
             String app_id,
             String app_secret,
             String url,
-            String env,
             String expiration) {
         this.app_id = app_id;
         this.app_secret = app_secret;
         this.url = (url != null && url != "") ? url : "https://analytics.volcengineapi.com";
-        this.env = (env != null && env != "") ? env : "dataopen";
         this.expiration = expiration != null ? expiration : "1800";
         this._ttl = 0;
         this._access_token = "";
@@ -57,7 +54,7 @@ public class Client {
     public Client(
             String app_id,
             String app_secret) {
-        this(app_id, app_secret, null, null, null);
+        this(app_id, app_secret, null, null);
     }
 
     public Map<String, Object> request(
@@ -90,11 +87,7 @@ public class Client {
             new_headers.put(entry.getKey(), entry.getValue());
         }
 
-        String completed_url = this.url +
-                "/" +
-                this.env +
-                Client.OPEN_APIS_PATH +
-                service_url;
+        String completed_url = this.url + service_url;
         String query_url = this._joint_query(completed_url, params);
 
         Map<String, Object> resp;
@@ -117,8 +110,8 @@ public class Client {
     }
 
     public void handle_token() throws IOException {
-        String authorization_url = this.env + Client.OPEN_APIS_PATH + "/v1/authorization";
-        String completed_url = this.url + "/" + authorization_url;
+        String authorization_url = Client.OPEN_APIS_PATH + "/v1/authorization";
+        String completed_url = this.url + authorization_url;
 
         Map<String, Object> map = new HashMap<>();
         map.put("app_id", this.app_id);

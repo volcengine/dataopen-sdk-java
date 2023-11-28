@@ -6,7 +6,7 @@
 
     <groupId>io.github.volcengine</groupId>
     <artifactId>dataopen-sdk-java</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.8</version>
 
     <name>dataopen-sdk-java</name>
     <url>https://github.com/volcengine/dataopen-sdk-java</url>

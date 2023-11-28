@@ -35,8 +35,6 @@ public class Client {
     private int _ttl;
     private long _token_time;
 
-    public static final String OPEN_APIS_PATH = "/dataopen/open-apis";
-
     public Client(
             String app_id,
             String app_secret,
@@ -82,6 +80,7 @@ public class Client {
         Map<String, String> new_headers = new HashMap<>();
         new_headers.put("Authorization", this._access_token);
         new_headers.put("Content-Type", "application/json");
+        new_headers.put("x-sdk-source", "java");
 
         for (Map.Entry<String, String> entry : headers.entrySet()) {
             new_headers.put(entry.getKey(), entry.getValue());
@@ -110,14 +109,18 @@ public class Client {
     }
 
     public void handle_token() throws IOException {
-        String authorization_url = Client.OPEN_APIS_PATH + "/v1/authorization";
+        String authorization_url = "/dataopen/open-apis/v1/authorization";
         String completed_url = this.url + authorization_url;
+
+        Map<String, String> new_headers = new HashMap<>();
+        new_headers.put("Content-Type", "application/json");
+        new_headers.put("x-sdk-source", "java");
 
         Map<String, Object> map = new HashMap<>();
         map.put("app_id", this.app_id);
         map.put("app_secret", this.app_secret);
 
-        Map<String, Object> resp = fetch(completed_url, "POST", new HashMap<String, String>(), map);
+        Map<String, Object> resp = fetch(completed_url, "POST", new_headers, map);
 
         long token_time = System.currentTimeMillis();
 
